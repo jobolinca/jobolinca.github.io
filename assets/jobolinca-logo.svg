@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">JoboliNCa</title>
+  <desc id="logoDesc">JoboliNCa logo with North Carolina silhouette and compass accent.</desc>
+  <defs>
+    <linearGradient id="gradientTarHeel" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#0b3d91" />
+      <stop offset="50%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#1f6feb" />
+    </linearGradient>
+    <linearGradient id="gradientSunset" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#0b1f44" flood-opacity="0.22" />
+    </filter>
+  </defs>
+  <g transform="translate(16 28)" filter="url(#shadow)">
+    <path d="M2 44 L32 32 L94 20 L154 18 L210 14 L250 16 L286 28 L318 38 L302 52 L272 58 L234 74 L198 86 L152 90 L104 86 L58 74 L20 58 Z" fill="url(#gradientTarHeel)" stroke="#0a2358" stroke-width="4" stroke-linejoin="round" />
+    <circle cx="102" cy="46" r="17" fill="url(#gradientSunset)" stroke="#0a2358" stroke-width="3" />
+    <path d="M102 36 l4.2 8.6 9.6 1.4 -6.9 6.7 1.7 9.6 -8.6-4.5 -8.6 4.5 1.7-9.6 -6.9-6.7 9.6-1.4z" fill="#0b3d91" />
+  </g>
+  <g transform="translate(190 30)">
+    <text x="0" y="36" font-family="'Inter', 'Segoe UI', sans-serif" font-size="40" font-weight="800" letter-spacing="0.01em" fill="#0b1f44">Joboli</text>
+    <text x="162" y="36" font-family="'Inter', 'Segoe UI', sans-serif" font-size="40" font-weight="800" letter-spacing="0.08em" fill="#0b3d91">NC</text>
+    <text x="228" y="36" font-family="'Inter', 'Segoe UI', sans-serif" font-size="40" font-weight="800" letter-spacing="0.01em" fill="#ea580c">a</text>
+    <text x="0" y="74" font-family="'Inter', 'Segoe UI', sans-serif" font-size="16" font-weight="600" letter-spacing="0.26em" fill="rgba(11, 31, 68, 0.72)">NORTH CAROLINA JOB GUIDE</text>
+  </g>
+</svg>

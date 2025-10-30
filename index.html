@@ -3,19 +3,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Explore curated job titles across North Carolina cities with the NC Careers Hub." />
-  <title>North Carolina Careers Hub</title>
+  <meta name="description" content="JoboliNCa spotlights the jobs shaping North Carolina cities with curated data, statewide insights, and regional career pathways." />
+  <title>JoboliNCa · North Carolina Job Explorer</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body class="landing-page">
+  <header class="site-header" aria-label="Primary navigation">
+    <div class="site-header__inner">
+      <a class="brand" href="#top" aria-label="JoboliNCa home">
+        <span class="brand__mark" aria-hidden="true">
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+
+            <g transform="translate(16 28)">
+
+              <path d="M2 44 L32 32 L94 20 L154 18 L210 14 L250 16 L286 28 L318 38 L302 52 L272 58 L234 74 L198 86 L152 90 L104 86 L58 74 L20 58 Z" fill="#1d4ed8" stroke="#0a2358" stroke-width="4" stroke-linejoin="round" />
+
+              <circle cx="102" cy="46" r="17" fill="#fbbf24" stroke="#0a2358" stroke-width="3" />
+
+              <path d="M102 36 l4.2 8.6 9.6 1.4 -6.9 6.7 1.7 9.6 -8.6-4.5 -8.6 4.5 1.7-9.6 -6.9-6.7 9.6-1.4z" fill="#0b3d91" />
+
+            </g>
+
+            <g transform="translate(190 30)">
+
+              <text x="0" y="36" font-family="'Inter', 'Segoe UI', sans-serif" font-size="40" font-weight="800" letter-spacing="0.01em" fill="#0b1f44">Joboli</text>
+
+              <text x="162" y="36" font-family="'Inter', 'Segoe UI', sans-serif" font-size="40" font-weight="800" letter-spacing="0.08em" fill="#0b3d91">NC</text>
+
+              <text x="228" y="36" font-family="'Inter', 'Segoe UI', sans-serif" font-size="40" font-weight="800" letter-spacing="0.01em" fill="#ea580c">a</text>
+
+              <text x="0" y="74" font-family="'Inter', 'Segoe UI', sans-serif" font-size="16" font-weight="600" letter-spacing="0.26em" fill="rgba(11, 31, 68, 0.72)">NORTH CAROLINA JOB GUIDE</text>
+
+            </g>
+
+          </svg>
+
+        </span>
+        <span class="brand__label">
+          <span class="brand__text">JoboliNCa</span>
+          <span class="brand__tagline">North Carolina job navigator</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="#city-explorer">Cities</a>
+        <a href="#nc-story">NC story</a>
+        <a href="#data-toolkit">Data toolkit</a>
+      </nav>
+      <a class="site-header__cta button button--light button--small" href="./unique_title_counts.xlsx">Download titles</a>
+    </div>
+  </header>
   <header class="hero" id="top">
     <div class="hero__content">
-      <p class="hero__eyebrow">North Carolina Careers Hub</p>
+      <p class="hero__eyebrow">JoboliNCa · North Carolina Job Navigator</p>
       <h1>Talent Meets Opportunity Across the Tar Heel State</h1>
-      <p class="hero__lede">Discover curated job titles aggregated from LinkedIn, Indeed, Adzuna, and NCWorks. Use the explorer below to find openings matched to your city and skillset.</p>
+      <p class="hero__lede">From the Blue Ridge Parkway to the Crystal Coast, JoboliNCa highlights the roles powering North Carolina&apos;s communities. Discover curated job titles aggregated from LinkedIn, Indeed, Adzuna, and NCWorks, then filter by region or keyword to uncover what fits you.</p>
+      <div class="hero__badge" role="note">
+        <span class="hero__badge-label">State motto</span>
+        <span>Esse quam videri — to be rather than to seem.</span>
+      </div>
       <div class="hero__actions">
         <a class="button" href="#city-explorer">Explore cities</a>
         <a class="button button--ghost" href="#insights">View statewide insights</a>
+        <a class="button button--light" href="#data-toolkit">Grab the data toolkit</a>
       </div>
       <dl class="hero__stats">
         <div class="hero__stat">
@@ -66,6 +116,39 @@
         <article class="insight-card">
           <h3>Data to decide</h3>
           <p><strong>5.1M</strong> payroll jobs and <strong>257K</strong> openings show a labor market outpacing the national average in 2025.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="state-story" id="nc-story" aria-labelledby="nc-story-title">
+      <div class="state-story__intro">
+        <h2 id="nc-story-title">Rooted in North Carolina</h2>
+        <p>JoboliNCa celebrates everything that makes the Tar Heel talent story singular&mdash;innovation in the Research Triangle, manufacturing grit in the Piedmont, and coastal resilience along the Outer Banks.</p>
+      </div>
+      <div class="state-story__grid">
+        <article class="state-story__card">
+          <h3>First in Flight Workforce</h3>
+          <p>From Kitty Hawk&apos;s legacy to Charlotte Douglas International&apos;s hub, aerospace and defense employers continue to scale statewide.</p>
+          <ul class="state-story__list">
+            <li>Piedmont Triad International anchors new MRO and advanced air mobility hiring.</li>
+            <li>Coastal bases at Seymour Johnson and Cherry Point expand skilled trades demand.</li>
+          </ul>
+        </article>
+        <article class="state-story__card">
+          <h3>Innovation Corridors</h3>
+          <p>Research Triangle Park, RTP biotech campuses, and Charlotte&apos;s fintech mile keep high-tech roles accelerating.</p>
+          <ul class="state-story__list">
+            <li>Raleigh-Durham startups pair with UNC System labs for R&amp;D pipelines.</li>
+            <li>Charlotte&apos;s fintech corridor and community banks need engineers, analysts, and product talent.</li>
+          </ul>
+        </article>
+        <article class="state-story__card">
+          <h3>Community Roots</h3>
+          <p>Fifty-eight community colleges, thriving HBCUs, and revitalized main streets nurture a future-ready workforce.</p>
+          <ul class="state-story__list">
+            <li>NC A&amp;T, NCCU, and WSSU grads keep inclusive innovation flowing into regional employers.</li>
+            <li>Appalachian and coastal makerspaces retrain residents in clean energy, logistics, and life sciences.</li>
+          </ul>
         </article>
       </div>
     </section>
@@ -244,9 +327,46 @@
       </div>
       <p class="city-empty" data-empty-state hidden>No cities match your filters. Try adjusting the search or region.</p>
     </section>
+
+    <section class="data-toolkit" id="data-toolkit" aria-labelledby="data-toolkit-title">
+      <div class="data-toolkit__inner">
+        <div class="data-toolkit__content">
+          <p class="data-toolkit__eyebrow">Data toolkit</p>
+          <h2 id="data-toolkit-title">Guide your search with curated datasets</h2>
+          <p>Download the same spreadsheets that power JoboliNCa to explore hiring velocity by metro, occupation cluster, and employer concentration.</p>
+          <div class="data-toolkit__actions">
+            <a class="button" href="./unique_title_counts.xlsx">Download title index</a>
+            <a class="button button--ghost" href="./adzuna_jobs_28277.xlsx">Sample raw feed</a>
+            <a class="button button--light" href="./README.md">Read methodology</a>
+          </div>
+        </div>
+        <div class="data-toolkit__aside">
+          <dl class="data-toolkit__stats">
+            <div>
+              <dt>58</dt>
+              <dd>Community colleges and workforce boards fueling apprenticeships statewide.</dd>
+            </div>
+            <div>
+              <dt>3</dt>
+              <dd>Growth corridors&mdash;Charlotte, Research Triangle, and the Triad&mdash;capturing high-value HQ expansions.</dd>
+            </div>
+            <div>
+              <dt>320+</dt>
+              <dd>Curated titles refreshed with job boards and NCWorks data each release.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer>
-    &copy; 2025 North Carolina Careers Hub. Buzzing with opportunity statewide.
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <p>&copy; 2025 JoboliNCa. Built for North Carolina&apos;s seekers, builders, and employers.</p>
+      <div class="site-footer__links">
+        <span class="site-footer__motto">Esse quam videri</span>
+        <a href="#top">Back to top</a>
+      </div>
+    </div>
   </footer>
 
   <script>

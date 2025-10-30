@@ -66,7 +66,7 @@ def build_home_html(city_pages: list[tuple[str, str]]) -> str:
 <head>
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-  <title>North Carolina Careers Hub</title>
+  <title>JoboliNCa · North Carolina Job Explorer</title>
   <style>
     :root {{
       color-scheme: light;
@@ -203,7 +203,7 @@ def build_home_html(city_pages: list[tuple[str, str]]) -> str:
 </head>
 <body>
   <header>
-    <h1>North Carolina Careers Hub</h1>
+    <h1>JoboliNCa</h1>
     <p>Explore in-demand roles across the Tar Heel State. Choose a city to see curated opportunities filtered from the latest Adzuna feed.</p>
   </header>
   <main>
@@ -226,7 +226,7 @@ def build_home_html(city_pages: list[tuple[str, str]]) -> str:
     </section>
   </main>
   <footer>
-    &copy; 2024 North Carolina Careers Hub. Connecting talent with opportunity statewide.
+    &copy; 2025 JoboliNCa. Connecting talent with opportunity statewide.
   </footer>
 
   <style>
