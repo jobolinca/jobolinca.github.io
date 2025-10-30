@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>North Carolina Careers Hub — Generated Titles</title>
+  
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="city-page">
+  <header>
+    <a class="home-button" href="./index.html">← Back to Home</a>
+    <h1>North Carolina Jobs</h1>
+    <p>Find Jobs in Charlotte.</p>
+  </header>
+  <main>
+    <section class="job-controls" aria-label="Job filters">
+      <form class="job-filter" role="search">
+        <div class="filter-field">
+          <label class="sr-only" for="job-search">Search job titles</label>
+          <input type="search" id="job-search" placeholder="Search job titles..." autocomplete="off" />
+        </div>
+        <div class="filter-field">
+          <label class="sr-only" for="job-category">Filter by category</label>
+          <select id="job-category">
+            <option value="all">All categories</option>
+          </select>
+        </div>
+        <button type="reset" class="filter-reset">View all jobs</button>
+      </form>
+      <p class="job-hint">Type keywords or choose a category to filter the jobs below.</p>
+    </section>
+
+
+    <div class="title-grid">
+  <div class="title-card">Local Flatbed Truck Driver</div>
+  <div class="title-card">Radiology / Cardiology - CT Tech</div>
+  <div class="title-card">Commercial Lines Sr. Underwriter, Religious Organizations - Hybrid or Remote Opportunity</div>
+  <div class="title-card">Travel CT Tech - $2,155 per week in Charlotte, NC</div>
+  <div class="title-card">Travel CT Tech - $2,177 per week in Charlotte, NC</div>
+  <div class="title-card">Travel CT Tech - $2,277 per week in Charlotte, NC</div>
+  <div class="title-card">Travel CT Tech - $2,306 per week in Charlotte, NC</div>
+  <div class="title-card">Travel CT Tech - $2,082 per week in Charlotte, NC</div>
+  <div class="title-card">Travel CT Tech in Charlotte, NC</div>
+  <div class="title-card">Travel CT Tech - $2,397 per week in Charlotte, NC</div>
+  <div class="title-card">Travel CT Tech - $2,307 per week in Charlotte, NC</div>
+  <div class="title-card">Golf Course Groundskeeper</div>
+  <div class="title-card">Medical Assistant Intern - Billingsley GYN</div>
+  <div class="title-card">Server</div>
+  <div class="title-card">Board Certified Behavior Analyst (BCBA) – Hybrid-In-Clinic</div>
+  <div class="title-card">Assistant Store Manager</div>
+  <div class="title-card">CERTIFIED NURSING ASSISTANT - BRIGHTMORE OF SOUTH CHARLOTTE</div>
+  <div class="title-card">Leasing Consultant - Promenade Park</div>
+  <div class="title-card">Restaurant Team Member</div>
+  <div class="title-card">Restaurant Management</div>
+</div>
+    <p class="job-empty" role="status">No jobs match your filters. Try adjusting the search or category.</p>
+    <script>
+  (function () {
+    const cards = Array.from(document.querySelectorAll('.title-card'));
+    if (!cards.length) return;
+
+    const searchInput = document.querySelector('#job-search');
+    const categorySelect = document.querySelector('#job-category');
+    const form = document.querySelector('.job-filter');
+    const emptyState = document.querySelector('.job-empty');
+
+    if (!searchInput || !categorySelect || !form) return;
+
+    const categories = new Map();
+
+    cards.forEach(card => {
+      const label = (card.querySelector('.card-category')?.textContent || '').trim();
+      if (!label) return;
+      const key = label.toLowerCase();
+      if (!categories.has(key)) {
+        categories.set(key, label);
+      }
+    });
+
+    const sorted = Array.from(categories.entries()).sort((a, b) => a[1].localeCompare(b[1]));
+
+    sorted.forEach(([value, label]) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      categorySelect.appendChild(option);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const qParam = (params.get('q') || '').trim();
+    if (qParam) {
+      searchInput.value = qParam;
+    }
+    const catParam = (params.get('cat') || '').toLowerCase();
+    if (catParam && categories.has(catParam)) {
+      categorySelect.value = catParam;
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categorySelect.value;
+      let shown = 0;
+
+      cards.forEach(card => {
+        const haystack = card.textContent.toLowerCase();
+        const categoryLabel = (card.querySelector('.card-category')?.textContent || '').trim().toLowerCase();
+        const matchesQuery = !query || haystack.includes(query);
+        const matchesCategory = category === 'all' || categoryLabel === category;
+        const visible = matchesQuery && matchesCategory;
+        card.style.display = visible ? '' : 'none';
+        if (visible) shown += 1;
+      });
+
+      if (emptyState) {
+        emptyState.style.display = shown ? 'none' : 'block';
+      }
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    categorySelect.addEventListener('change', applyFilters);
+    form.addEventListener('reset', () => {
+      window.requestAnimationFrame(() => {
+        categorySelect.value = 'all';
+        applyFilters();
+      });
+    });
+
+    applyFilters();
+  })();
+    </script>
+
+  </main>
+  <footer>
+    &copy; 2024 North Carolina Careers Hub. Generated report.
+  </footer>
+</body>
+</html>
