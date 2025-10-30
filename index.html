@@ -17,12 +17,16 @@
           <span class="brand__tagline">North Carolina job navigator</span>
         </span>
       </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation" data-nav-toggle>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
       <nav class="site-nav" aria-label="Main">
         <a href="#city-explorer">Cities</a>
         <a href="#nc-story">NC story</a>
         <a href="#data-toolkit">Data toolkit</a>
       </nav>
-      <a class="site-header__cta button button--light button--small" href="./unique_title_counts.xlsx">Download titles</a>
     </div>
   </header>
   <header class="hero" id="top">
@@ -32,7 +36,7 @@
       <p class="hero__lede">From the Blue Ridge Parkway to the Crystal Coast, JoboliNCa highlights the roles powering North Carolina&apos;s communities. Discover curated job titles aggregated from LinkedIn, Indeed, Adzuna, and NCWorks, then filter by region or keyword to uncover what fits you.</p>
       <div class="hero__badge" role="note">
         <span class="hero__badge-label">State motto</span>
-        <span>Esse quam videri — to be rather than to seem.</span>
+        <span>Esse quam videri (to be rather than to seem).</span>
       </div>
       <div class="hero__actions">
         <a class="button" href="#city-explorer">Explore cities</a>
@@ -61,10 +65,10 @@
       <div class="hero-card">
         <h3>Industries Adding Jobs</h3>
         <ul>
-          <li>Education &amp; Health Services &mdash; <strong>+3.0%</strong></li>
-          <li>Professional &amp; Business Services &mdash; <strong>+2.9%</strong></li>
-          <li>Construction &mdash; <strong>+2.9%</strong></li>
-          <li>Leisure &amp; Hospitality &mdash; <strong>+1.9%</strong></li>
+          <li>Education &amp; Health Services <strong>+3.0%</strong></li>
+          <li>Professional &amp; Business Services <strong>+2.9%</strong></li>
+          <li>Construction <strong>+2.9%</strong></li>
+          <li>Leisure &amp; Hospitality <strong>+1.9%</strong></li>
         </ul>
       </div>
       <div class="hero-card">
@@ -95,7 +99,7 @@
     <section class="state-story" id="nc-story" aria-labelledby="nc-story-title">
       <div class="state-story__intro">
         <h2 id="nc-story-title">Rooted in North Carolina</h2>
-        <p>JoboliNCa celebrates everything that makes the Tar Heel talent story singular&mdash;innovation in the Research Triangle, manufacturing grit in the Piedmont, and coastal resilience along the Outer Banks.</p>
+        <p>JoboliNCa celebrates everything that makes the Tar Heel talent story singular: innovation in the Research Triangle, manufacturing grit in the Piedmont, and coastal resilience along the Outer Banks.</p>
       </div>
       <div class="state-story__grid">
         <article class="state-story__card">
@@ -305,9 +309,9 @@
         <div class="data-toolkit__content">
           <p class="data-toolkit__eyebrow">Data toolkit</p>
           <h2 id="data-toolkit-title">Guide your search with curated datasets</h2>
-          <p>Download the same spreadsheets that power JoboliNCa to explore hiring velocity by metro, occupation cluster, and employer concentration.</p>
+          <p>Review the JoboliNCa data workbook to explore hiring velocity by metro, occupation cluster, and employer concentration without wrestling with raw exports.</p>
           <div class="data-toolkit__actions">
-            <a class="button" href="./unique_title_counts.xlsx">Download title index</a>
+            <a class="button" href="./unique_title_counts.xlsx">Open title index workbook</a>
             <a class="button button--ghost" href="./adzuna_jobs_28277.xlsx">Sample raw feed</a>
             <a class="button button--light" href="./README.md">Read methodology</a>
           </div>
@@ -320,7 +324,7 @@
             </div>
             <div>
               <dt>3</dt>
-              <dd>Growth corridors&mdash;Charlotte, Research Triangle, and the Triad&mdash;capturing high-value HQ expansions.</dd>
+              <dd>Growth corridors across Charlotte, the Research Triangle, and the Triad capture high-value HQ expansions.</dd>
             </div>
             <div>
               <dt>320+</dt>
@@ -343,8 +347,100 @@
 
   <script>
     (function () {
+      const nav = document.querySelector('.site-nav');
+      const navToggle = document.querySelector('[data-nav-toggle]');
+      const navLinks = nav ? Array.from(nav.querySelectorAll('a')).filter((link) => Boolean(link.hash)) : [];
+      const navTargets = navLinks
+        .map((link) => {
+          const target = document.querySelector(link.hash);
+          return target ? { link, hash: link.hash, target, ratio: 0 } : null;
+        })
+        .filter(Boolean);
+      const navTargetMap = new Map(navTargets.map((item) => [item.target, item]));
+      const navHashes = new Set(navTargets.map((item) => item.hash));
+
+      const setNavExpanded = (expanded) => {
+        if (!nav || !navToggle) return;
+        nav.classList.toggle('is-open', expanded);
+        navToggle.classList.toggle('is-active', expanded);
+        navToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      };
+
+      const setActiveNav = (hash) => {
+        navTargets.forEach(({ link, hash: targetHash }) => {
+          const isActive = hash === targetHash;
+          link.classList.toggle('is-active', isActive);
+          if (isActive) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      };
+
+      if (navTargets.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const meta = navTargetMap.get(entry.target);
+              if (!meta) return;
+              meta.ratio = entry.isIntersecting ? entry.intersectionRatio : 0;
+            });
+
+            let best = null;
+            navTargets.forEach((item) => {
+              if (!best || item.ratio > best.ratio) {
+                best = item;
+              }
+            });
+
+            setActiveNav(best && best.ratio > 0.25 ? best.hash : null);
+          },
+          {
+            threshold: [0.2, 0.35, 0.5],
+            rootMargin: '-20% 0px -40%',
+          }
+        );
+
+        navTargets.forEach((item) => observer.observe(item.target));
+
+        navLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            setActiveNav(link.hash);
+            setNavExpanded(false);
+          });
+        });
+
+        window.addEventListener('hashchange', () => {
+          const { hash } = window.location;
+          if (navHashes.has(hash)) {
+            setActiveNav(hash);
+          }
+        });
+
+        if (navHashes.has(window.location.hash)) {
+          setActiveNav(window.location.hash);
+        }
+      }
+
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+          const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+          setNavExpanded(!expanded);
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 959) {
+            setNavExpanded(true);
+          } else {
+            setNavExpanded(false);
+          }
+        });
+
+        setNavExpanded(window.innerWidth > 959);
+      }
+
       const cards = Array.from(document.querySelectorAll('[data-city-card]'));
-      if (!cards.length) return;
 
       const searchInput = document.querySelector('[data-city-search]');
       const keywordInput = document.querySelector('[data-keyword-input]');
